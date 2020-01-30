@@ -22,10 +22,12 @@ strategy:
       python.version: '3.7'
 
 steps:
-- task: UsePythonVersion@0
+- task: PythonScript@0
   inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+    scriptSource: 'inline'
+    script: |
+      print('Hello world 1')
+      print('Hello world 2')
 
 - script: |
     python -m pip install --upgrade pip
@@ -37,9 +39,5 @@ steps:
     pytest
   displayName: 'pytest'
 
-- task: PythonScript@0
-  inputs:
-    scriptSource: 'inline'
-    script: |
-      print('Hello world 1')
-      print('Hello world 2')
+
+  
